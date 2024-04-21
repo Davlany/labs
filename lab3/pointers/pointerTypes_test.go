@@ -1,7 +1,7 @@
 package pointersTypes_test
 
 import (
-	pointersTypes "labs/lab3/pointers"
+	pointersTypes "lab3/pointers"
 	"testing"
 )
 
