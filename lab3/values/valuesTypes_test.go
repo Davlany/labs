@@ -1,7 +1,7 @@
 package valuesTypes_test
 
 import (
-	valuesTypes "labs/lab3/values"
+	valuesTypes "lab3/values"
 	"testing"
 )
 
