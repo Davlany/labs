@@ -8,64 +8,47 @@ import (
 
 func TestCat_Say(t *testing.T) {
 	testingCat := new(animalfactory.Cat)
-	if testingCat.Say() == "Meow" {
-		t.Log("Test complete")
-	} else {
-		t.Errorf("Test fail, expected Meow, got %s", testingCat.Say())
+	testSay := testingCat.Say()
+	if testSay != animalfactory.CatSay {
+		t.Errorf("Test fail, expected %s, got %s", animalfactory.CatSay, testSay)
 	}
 }
 
 func TestDog_Say(t *testing.T) {
 	testingDog := new(animalfactory.Dog)
-	if testingDog.Say() == "Gaw" {
-		t.Log("Test complete")
-	} else {
-		t.Errorf("Test fail, expected Gaw, got %s", testingDog.Say())
+	testSay := testingDog.Say()
+	if testSay != animalfactory.CatSay {
+		t.Errorf("Test fail, expected %s, got %s", animalfactory.DogSay, testSay)
 	}
 
 }
 
 func TestAnimalFactoryDog(t *testing.T) {
-	testingData := []string{"dog"}
-	expected := []string{"Dog"}
-	for i, data := range testingData {
-		animal, err := animalfactory.AnimalFactory(data)
-		if err != nil {
-			t.Error(err)
-		}
-		if reflect.TypeOf(animal).Name() == expected[i] {
-			t.Log("Test complete")
-		} else {
-			t.Errorf("Test fail, expected %s, got %s", expected[i], animal)
-		}
+	testingData := "dog"
+	expected := animalfactory.Animal1
+	animal, err := animalfactory.AnimalFactory(testingData)
+	if err != nil {
+		t.Error(err)
 	}
+	if reflect.TypeOf(animal).Name() == expected {
+		t.Log("Test complete")
+	} else {
+		t.Errorf("Test fail, expected %s, got %s", expected, animal)
+	}
+
 }
 
 func TestAnimalFactoryCat(t *testing.T) {
-	testingData := []string{"cat"}
-	expected := []string{"Cat"}
-	for i, data := range testingData {
-		animal, err := animalfactory.AnimalFactory(data)
-		if err != nil {
-			t.Error(err)
-		}
-		if reflect.TypeOf(animal).Name() == expected[i] {
-			t.Log("Test complete")
-		} else {
-			t.Errorf("Test fail, expected %s, got %s", expected[i], animal)
-		}
+	testingData := "cat"
+	expected := animalfactory.Animal2
+	animal, err := animalfactory.AnimalFactory(testingData)
+	if err != nil {
+		t.Error(err)
 	}
-}
-
-func TestAnimalFactoryErr(t *testing.T) {
-	testingData := []string{"cat", "dog"}
-	for _, data := range testingData {
-		_, err := animalfactory.AnimalFactory(data)
-		if err != nil {
-			t.Error(err)
-		} else {
-			t.Log("Test complete")
-		}
-
+	if reflect.TypeOf(animal).Name() == expected {
+		t.Log("Test complete")
+	} else {
+		t.Errorf("Test fail, expected %s, got %s", expected, animal)
 	}
+
 }

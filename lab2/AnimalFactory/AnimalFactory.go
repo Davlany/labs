@@ -4,6 +4,13 @@ import (
 	"errors"
 )
 
+const (
+	Animal1 = "Dog"
+	Animal2 = "Cat"
+	DogSay  = "Gaw"
+	CatSay  = "Meow"
+)
+
 type Animal interface {
 	Say() string
 }
@@ -15,11 +22,11 @@ type Cat struct {
 }
 
 func (d Dog) Say() string {
-	return "Gaw"
+	return DogSay
 }
 
 func (c Cat) Say() string {
-	return "Meow"
+	return CatSay
 }
 
 func AnimalFactory(anType string) (Animal, error) {
