@@ -30,9 +30,7 @@ func TestAnimalFactoryDog(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	if reflect.TypeOf(animal).Name() == expected {
-		t.Log("Test complete")
-	} else {
+	if reflect.TypeOf(animal).Name() != expected {
 		t.Errorf("Test fail, expected %s, got %s", expected, animal)
 	}
 
@@ -45,9 +43,7 @@ func TestAnimalFactoryCat(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	if reflect.TypeOf(animal).Name() == expected {
-		t.Log("Test complete")
-	} else {
+	if reflect.TypeOf(animal).Name() != expected {
 		t.Errorf("Test fail, expected %s, got %s", expected, animal)
 	}
 
