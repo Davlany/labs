@@ -29,5 +29,5 @@ func AnimalFactory(anType string) (Animal, error) {
 	if anType == "cat" {
 		return Cat{}, nil
 	}
-	return nil, errors.New("Wrong type")
+	return nil, errors.New("wrong type")
 }
