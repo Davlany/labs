@@ -4,34 +4,27 @@ import (
 	"errors"
 )
 
-const (
-	Animal1 = "Dog"
-	Animal2 = "Cat"
-	DogSay  = "Gaw"
-	CatSay  = "Meow"
-)
-
 type Animal interface {
 	Say() string
 }
 
-type Dog struct {
+type Dogich struct {
 }
 
 type Cat struct {
 }
 
-func (d Dog) Say() string {
-	return DogSay
+func (d Dogich) Say() string {
+	return "Gaw"
 }
 
 func (c Cat) Say() string {
-	return CatSay
+	return "Meow"
 }
 
 func AnimalFactory(anType string) (Animal, error) {
 	if anType == "dog" {
-		return Dog{}, nil
+		return Dogich{}, nil
 	}
 	if anType == "cat" {
 		return Cat{}, nil

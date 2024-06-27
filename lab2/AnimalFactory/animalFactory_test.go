@@ -9,42 +9,47 @@ import (
 func TestCat_Say(t *testing.T) {
 	testingCat := new(animalfactory.Cat)
 	testSay := testingCat.Say()
-	if testSay != animalfactory.CatSay {
-		t.Errorf("Test fail, expected %s, got %s", animalfactory.CatSay, testSay)
+	if testSay != "Meow" {
+		t.Errorf("Test fail, expected %s, got %s", "Meow", testSay)
 	}
 }
 
 func TestDog_Say(t *testing.T) {
-	testingDog := new(animalfactory.Dog)
+	testingDog := new(animalfactory.Dogich)
 	testSay := testingDog.Say()
-	if testSay != animalfactory.CatSay {
-		t.Errorf("Test fail, expected %s, got %s", animalfactory.DogSay, testSay)
+	if testSay != "Gaw" {
+		t.Errorf("Test fail, expected %s, got %s", "Gaw", testSay)
 	}
 
 }
 
 func TestAnimalFactoryDog(t *testing.T) {
-	testingData := "dog"
-	expected := animalfactory.Animal1
-	animal, err := animalfactory.AnimalFactory(testingData)
-	if err != nil {
-		t.Error(err)
-	}
-	if reflect.TypeOf(animal).Name() != expected {
-		t.Errorf("Test fail, expected %s, got %s", expected, animal)
+	animal, _ := animalfactory.AnimalFactory("dog")
+	animalType := reflect.TypeOf(animal).Name()
+	dogType := reflect.TypeOf(animalfactory.Dogich{}).Name()
+
+	if animalType != dogType {
+		t.Errorf("Test failed, expected %s got: %s", dogType, animalType)
 	}
 
 }
 
 func TestAnimalFactoryCat(t *testing.T) {
-	testingData := "cat"
-	expected := animalfactory.Animal2
-	animal, err := animalfactory.AnimalFactory(testingData)
-	if err != nil {
-		t.Error(err)
-	}
-	if reflect.TypeOf(animal).Name() != expected {
-		t.Errorf("Test fail, expected %s, got %s", expected, animal)
-	}
+	animal, _ := animalfactory.AnimalFactory("cat")
+	animalType := reflect.TypeOf(animal).Name()
+	catType := reflect.TypeOf(animalfactory.Cat{}).Name()
 
+	if animalType != catType {
+		t.Errorf("Test failed, expected %s got: %s", catType, animalType)
+	}
+}
+
+func TestErrors(t *testing.T) {
+	testValues := []string{"Bird", "dock", "", "papich"}
+	for _, v := range testValues {
+		_, err := animalfactory.AnimalFactory(v)
+		if err == nil {
+			t.Errorf("Test failed, expected error: wrong type, but error is nil")
+		}
+	}
 }
